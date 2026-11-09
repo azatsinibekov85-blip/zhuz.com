@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Қазақ жүздері: Кіші жүз – Жетіру – Тама</title>
+<style>
+:root{--bg:#f6f3ea;--fg:#1d2a33;--card:#fff;--mut:#5b6770;--u:#2a9d8f;--o:#e9a23b;--k:#d1495b;--line:#d9d4c4;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10181d;--fg:#eef2f3;--card:#192329;--mut:#9aa8b0;--line:#2b3a43;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5}
+.w{max-width:760px;margin:0 auto;padding:18px 16px 40px}
+h1{font-size:24px;margin:0 0 4px}h2{font-size:19px;margin:30px 0 10px}
+.sub{color:var(--mut);margin:0 0 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-top:12px}
+svg{width:100%;height:auto;display:block}
+.z{cursor:pointer;transition:transform .3s}
+.z circle.main{transition:r .4s,opacity .3s}
+.pulse{animation:p 2.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes p{50%{transform:scale(1.07)}}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+button{font:inherit;border:1px solid var(--line);background:var(--card);color:var(--fg);padding:8px 14px;border-radius:999px;cursor:pointer}
+button.on{color:#fff;border-color:transparent}
+.fact{opacity:0;transform:translateY(8px);animation:in .5s forwards}
+@keyframes in{to{opacity:1;transform:none}}
+.bar{height:26px;border-radius:8px;background:var(--line);margin:8px 0;position:relative;overflow:hidden}
+.bar i{position:absolute;inset:0 auto 0 0;width:0;background:var(--u);transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+.bar.t i{background:var(--k)}
+.bar span{position:relative;padding:0 10px;font-size:14px;line-height:26px;color:#fff;mix-blend-mode:normal;text-shadow:0 1px 2px #0006}
+.orb{transform-origin:200px 200px;animation:rot 40s linear infinite}
+.orb text{animation:rot 40s linear infinite reverse}
+@keyframes rot{to{transform:rotate(360deg)}}
+.node{cursor:pointer}
+small{color:var(--mut)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="w">
+<h1>Қазақ жүздері</h1>
+<p class="sub">Ұлы жүз · Орта жүз · Кіші жүз → Жетіру → Тама</p>
+
+<div class="card">
+<svg viewBox="0 0 400 260" role="img" aria-label="Үш жүздің схемалық картасы">
+<rect x="4" y="4" width="392" height="252" rx="18" fill="none" stroke="var(--line)"/>
+<g class="z" data-k="k"><circle class="main pulse" cx="80" cy="140" r="52" fill="var(--k)" opacity=".85"/><text x="80" y="144" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">Кіші жүз</text><text x="80" y="204" text-anchor="middle" fill="var(--mut)" font-size="11">батыс</text></g>
+<g class="z" data-k="o"><circle class="main pulse" cx="205" cy="85" r="58" fill="var(--o)" opacity=".85" style="animation-delay:.5s"/><text x="205" y="89" text-anchor="middle" fill="#1d2a33" font-size="14" font-weight="700">Орта жүз</text><text x="205" y="30" text-anchor="middle" fill="var(--mut)" font-size="11">орталық · солтүстік · шығыс</text></g>
+<g class="z" data-k="u"><circle class="main pulse" cx="318" cy="180" r="52" fill="var(--u)" opacity=".85" style="animation-delay:1s"/><text x="318" y="184" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">Ұлы жүз</text><text x="318" y="244" text-anchor="middle" fill="var(--mut)" font-size="11">оңтүстік-шығыс</text></g>
+</svg>
+<small>Схема картаға дәл сәйкес келмейді, тек орналасуын көрсетеді. Жүзді басып көріңіз.</small>
+<div class="tabs" id="tabs"></div>
+<div id="info" style="margin-top:10px"></div>
+</div>
+
+<h2>Кіші жүз ішінде: Жетіру</h2>
+<div class="card">
+<p style="margin-top:0">Кіші жүз үш бөліктен тұрады: Әлімұлы, Байұлы және Жетіру. Жетіру жеті руды біріктіреді. Шеңберден рудың атын басыңыз.</p>
+<svg viewBox="0 0 400 400" id="orbit" role="img" aria-label="Жетіру руларының схемасы"></svg>
+<div id="ruinfo" class="card" style="margin-top:6px"></div>
+</div>
+
+<h2>Жетіру руларының саны</h2>
+<div class="card">
+<p style="margin-top:0"><small>XIX–XX ғасыр аралығындағы революцияға дейінгі статистика бойынша шамамен, мың адам.</small></p>
+<div id="bars"></div>
+</div>
+
+<h2>Тама туралы</h2>
+<div class="card" id="tama"></div>
+<p><small>Дереккөздер: Wikipedia (Jüz), ruwiki (Жетыру), оқулық материалдары. Сандар шамамен және әр деректе әртүрлі болуы мүмкін.</small></p>
+</div>
+
+<script>
+"use strict";
+var Z={
+u:{n:"Ұлы жүз",c:"var(--u)",f:["Аумағы: Жетісу және Оңтүстік Қазақстан.","Рулары: үйсін, дулат, албан, суан, жалайыр, қаңлы, шапырашты, ысты, ошақты, сіргелі.","Тарихи ортасы: Іле мен Шу өзендерінің аңғарлары."]},
+o:{n:"Орта жүз",c:"var(--o)",f:["Аумағы: Орталық, Солтүстік және Шығыс Қазақстан.","Құрамында алты тайпа бар: қыпшақ, арғын, найман, керей, қоңырат, уақ.","Оны Арғын жүз деп те атайды."]},
+k:{n:"Кіші жүз",c:"var(--k)",f:["Аумағы: Батыс Қазақстан.","Үш одақтан тұрады: Әлімұлы, Байұлы, Жетіру.","Оны Алшын жүз деп те атайды.","1731 жылдан Ресей империясының құрамына енді."]}
+};
+var RU=[["Тама",45],["Табын",80],["Кердері",20],["Кереит",33],["Телеу",20],["Рамадан",5],["Жағалбайлы",70]];
+var RI={
+"Тама":"Тама – Жетіру құрамындағы ру. Шамамен 40–45 мың адам. Актөбе және Орал уездерінде мекендеген.",
+"Табын":"Табын – Жетіруде ең көп ру: шамамен 80 мың адам.",
+"Кердері":"Кердері – шамамен 20 мың адам. Актөбе және Орал уездерінде мекендеген.",
+"Кереит":"Кереит – шамамен 30–35 мың адам. Перовск уезінде де мекендеген.",
+"Телеу":"Телеу – шамамен 20 мың адам.",
+"Рамадан":"Рамадан – ең шағын ру, шамамен 5 мың адам.",
+"Жағалбайлы":"Жағалбайлы – шамамен 70 мың адам. Актөбе және Қостанай уездерінде мекендеген."
+};
+var $=function(id){return document.getElementById(id)};
+function show(k){
+  var d=Z[k],t=$("tabs").children;
+  for(var i=0;i<t.length;i++){var on=t[i].dataset.k===k;t[i].className=on?"on":"";t[i].style.background=on?Z[t[i].dataset.k].c:""}
+  var h="<b>"+d.n+"</b>";
+  d.f.forEach(function(s,i){h+='<div class="fact" style="animation-delay:'+(i*.25)+'s">• '+s+"</div>"});
+  $("info").innerHTML=h;
+}
+Object.keys(Z).forEach(function(k){
+  var b=document.createElement("button");b.textContent=Z[k].n;b.dataset.k=k;
+  b.onclick=function(){show(k)};$("tabs").appendChild(b);
+});
+document.querySelectorAll(".z").forEach(function(g){g.addEventListener("click",function(){show(g.dataset.k)})});
+show("k");
+
+/* Жетіру шеңбері */
+var NS="http://www.w3.org/2000/svg";
+function el(n,a,p){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e}
+var o=$("orbit");
+el("circle",{cx:200,cy:200,r:130,fill:"none",stroke:"var(--line)","stroke-dasharray":"4 6"},o);
+var c=el("circle",{cx:200,cy:200,r:46,fill:"var(--k)"},o);c.setAttribute("class","pulse");
+var ct=el("text",{x:200,y:205,"text-anchor":"middle",fill:"#fff","font-size":16,"font-weight":700},o);ct.textContent="Жетіру";
+var g=el("g",{class:"orb"},o);
+RU.forEach(function(r,i){
+  var a=i/7*Math.PI*2-Math.PI/2,x=200+130*Math.cos(a),y=200+130*Math.sin(a);
+  var n=el("g",{class:"node"},g);
+  el("circle",{cx:x,cy:y,r:r[0]==="Тама"?34:30,fill:r[0]==="Тама"?"var(--o)":"var(--u)"},n);
+  var t=el("text",{x:x,y:y+4,"text-anchor":"middle",fill:r[0]==="Тама"?"#1d2a33":"#fff","font-size":r[0]==="Жағалбайлы"?10:12,"font-weight":700},n);
+  t.style.transformOrigin=x+"px "+y+"px";t.textContent=r[0];
+  n.addEventListener("click",function(){ru(r[0])});
+});
+function ru(n){$("ruinfo").innerHTML="<b>"+n+"</b><br>"+RI[n]}
+ru("Тама");
+
+/* Бағандар */
+var bx=$("bars"),max=80;
+RU.slice().sort(function(a,b){return b[1]-a[1]}).forEach(function(r){
+  var d=document.createElement("div");d.className="bar"+(r[0]==="Тама"?" t":"");
+  d.innerHTML='<i></i><span>'+r[0]+": <b>0</b> мың</span>";bx.appendChild(d);d._r=r;
+});
+function run(){
+  Array.prototype.forEach.call(bx.children,function(d){
+    var r=d._r,b=d.querySelector("b");d.firstChild.style.width=(r[1]/max*100)+"%";
+    var s=null;(function step(t){if(s===null)s=t;var p=Math.min((t-s)/1200,1);b.textContent=Math.round(r[1]*p);if(p<1)requestAnimationFrame(step)})(performance.now());
+  });
+}
+if("IntersectionObserver" in window){
+  var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){run();io.disconnect()}},{threshold:.3});io.observe(bx);
+}else run();
+
+/* Тама */
+var T=["Тама – Жетіру құрамына кіретін жеті рудың бірі.","Шамамен 40–45 мың адам (XIX–XX ғасыр аралығы).","Тама ішінде: Құрақ, Жабал, Аташал, Дәулеткелді, Қызылқұрт, Кенжебай, Молдас, Айдар және басқа аталар.","1801 жылы Бөкей ханмен бірге Жайықтың арғы бетіне өткен Бөкей ордасының құрамында Тама, Табын, Кердері және төре руы болды."];
+var tm=$("tama");
+T.forEach(function(s,i){var d=document.createElement("div");d.className="fact";d.style.animationDelay=(i*.35)+"s";d.textContent="• "+s;d.style.margin="6px 0";tm.appendChild(d)});
+</script>
+</body>
+</html>
